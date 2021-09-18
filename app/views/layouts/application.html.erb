@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <header>
+      <% if admin_signed_in? %>
+        <%= link_to "ログアウト", destroy_admin_session_path %>
+      <% elsif end_user_signed_in? %>
+        
+      <% else %>
+        
+      <% end %>
+    </header>
+  
     <%= yield %>
   </body>
 </html>
