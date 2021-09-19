@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'end_users/show'
-  get 'end_users/edit'
-  get 'end_users/verification'
+  get 'cart_products/index'
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
@@ -18,10 +16,13 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'about' => 'homes#about'
 
+  resources :products, only: [:index, :show]
+
   resources :orders, only: [:index, :show, :new]
   get 'confirm' => 'orders#confirm'
   get 'thanks' => 'orders#thanks'
 
   resources :end_users, only: [:show, :update, :edit]
   get 'verification' => 'end_users#verification'
+
 end
