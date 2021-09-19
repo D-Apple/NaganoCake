@@ -1,0 +1,35 @@
+<div class="container">
+ <h3>マイページ</h3>
+ <h4>登録情報</h4>
+ <%= link_to "編集する", edit_end_user_path, class: "btn btn-success" %>
+ <table class="table table-hover table-inverse mb-5">
+   <tbody>
+     <tr>
+       <td>氏名</td>
+       <td><%= @end_user.last_name %><%= @end_user.first_name %></td>
+     </tr>
+     <tr>
+       <td>カナ</td>
+       <td><%= @end_user.last_name_furigana %><%= @end_user.first_name_furigana %></td>
+     </tr>
+     <tr>
+       <td>郵便番号</td>
+       <td><%= @end_user.postal_code %></td>
+     </tr>
+     <tr>
+       <td>住所</td>
+       <td><%= @end_user.address %></td>
+     </tr>
+     <tr>
+       <td>電話番号</td>
+       <td><%= @end_user.telephone_number %></td>
+     </tr>
+     <tr>
+       <td>メールアドレス</td>
+       <td><%= @end_user.email %></td>
+     </tr>
+   </tbody>
+ </table>
+ 配送先　<%= link_to "一覧を見る", "#", class: "btn btn-success" %></br></br>
+ 注文履歴　<%= link_to "注文履歴", "#", class: "btn btn-success" %>
+</div>
