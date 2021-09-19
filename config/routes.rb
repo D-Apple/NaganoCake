@@ -18,6 +18,7 @@ Rails.application.routes.draw do
  namespace :admins do
   resources :products, only:[:new, :create, :index, :show, :edit, :update]
   resources :genres, only:[:index, :create, :edit, :update]
+  resources :end_users
  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
