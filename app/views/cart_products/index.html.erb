@@ -1,0 +1,25 @@
+<div class="container">
+  <h3>ショッピングカート</h3>
+  <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_products.each do |cart_product| %>
+      <tr>
+        <th><%= cart_product.product.name %></th>
+        <th><%= cart_product.product.price * 1.1  %></th>
+        <th><%= cart_product.amount %></th>
+        <th><%= (cart_product.product.price * 1.1) * cart_product.amount %></th>
+        <th><%= link_to "削除する", cart_product_path(cart_product.id), method: :delete %></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

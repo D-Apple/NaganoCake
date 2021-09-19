@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :end_users, only: [:show, :update, :edit]
   get 'verification' => 'end_users#verification'
+  
+  resources :cart_products, only: [:index, :create, :update, :destroy]
 
   namespace :admins do
     resources :products, only:[:new, :create, :index, :show, :edit, :update]
