@@ -1,18 +1,30 @@
-<h2>商品一覧</h2>
-  <table class="table">
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-    <% @products.each do |product| %>
-    <tr>
-      <th><%= product.id %></th>
-      <th><%= link_to product.name %></th>
-      <th><%= product.price %></th>
-      <th><%= product.genre_id.name %></th>
-      <th><%= product.is_status %></th>
-    </tr>
-  </table>
+<div class="container">    
+      <h2>商品一覧</h2>
+      <%= link_to "商品追加", new_admins_product_path %>
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th>商品ID</th>
+              <th>商品名</th>
+              <th>税抜価格</th>
+              <th>ジャンル</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+            <% @products.each do |product| %>
+            <tr>
+              <th><%= product.id %></th>
+              <th><%= link_to product.name, admins_product_path(product.id) %></th>
+              <th><%= product.price %></th>
+              <th><%= product.genre.name %></th>
+              <th>
+                <% if product.is_status %>
+                <font color="lime">販売中</font>
+                <% else %>
+                <font color="silver">販売停止</font>
+                <% end %>
+              </th>
+            </tr>
+            <% end %>
+        </table>
+</div>
