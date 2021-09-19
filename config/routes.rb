@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'cart_products/index'
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
@@ -24,5 +25,10 @@ Rails.application.routes.draw do
 
   resources :end_users, only: [:show, :update, :edit]
   get 'verification' => 'end_users#verification'
+
+  namespace :admins do
+    resources :products, only:[:new, :create, :index, :show, :edit, :update]
+    resources :genres, only:[:index, :create, :edit, :update]
+ end
 
 end
