@@ -20,5 +20,14 @@ Rails.application.routes.draw do
   resources :genres, only:[:index, :create, :edit, :update]
   resources :end_users
  end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :products, only: [:index, :show]
+
+  resources :orders, only: [:index, :show, :new]
+  get 'confirm' => 'orders#confirm'
+  get 'thanks' => 'orders#thanks'
+
+  resources :end_users, only: [:show, :update, :edit]
+  get 'verification' => 'end_users#verification'
+
 end
