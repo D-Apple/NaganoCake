@@ -15,7 +15,7 @@
           <% @end_users.each do |end_user| %>
             <tr>
               <th><%= end_user.id %></th>
-              <th><%= link_to end_user.first_name + end_user.last_name, admins_end_user_path(end_user.id) %></th>
+              <th><%= link_to end_user.last_name + end_user.first_name, admins_end_user_path(end_user.id) %></th>
               <th><%= end_user.email %></th>
               <th>
                 <% if end_user.is_withdrawal %>

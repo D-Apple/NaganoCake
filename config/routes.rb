@@ -12,13 +12,14 @@ Rails.application.routes.draw do
  }
  
  root to: 'homes#top'
- get 'homes/about' => 'homes#about'
+ get 'about' => 'homes#about'
  
  
  namespace :admins do
   resources :products, only:[:new, :create, :index, :show, :edit, :update]
   resources :genres, only:[:index, :create, :edit, :update]
-  resources :end_users
+  resources :end_users, only:[:index, :show, :edit, :update]
+  resources :orders, only:[:index, :show, :update]
  end
 
   resources :products, only: [:index, :show]
