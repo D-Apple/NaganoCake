@@ -1,2 +1,34 @@
-<h1>EndUsers#edit</h1>
-<p>Find me in app/views/end_users/edit.html.erb</p>
+<div class="container">
+  <h3>会員情報編集</h3>
+  <%= form_with model: @end_user, local: true do |f| %>
+    <div class="field">
+      <%= f.label :名前 %>
+      (姓)<%= f.text_field :last_name, autofocus: true, class: "last_name" %>
+      (名)<%= f.text_field :first_name, class: "first_name" %>
+    </div></br>
+    <div class="field">
+      <%= f.label :フリガナ %>
+      (セイ)<%= f.text_field :last_name_furigana, class: "last_name_furigana" %>
+      (メイ)<%= f.text_field :first_name_furigana, class: "first_name_furigana" %>
+    </div></br>
+    <div class="field">
+      <%= f.label :郵便番号（ハイフンなし） %>
+      <%= f.text_field :postal_code, class: "postal_code" %>
+    </div></br>
+    <div class="field">
+      <%= f.label :住所 %>
+      <%= f.text_field :address, class: "address" %>
+    </div></br>
+    <div class="field">
+      <%= f.label :電話番号（ハイフンなし） %>
+      <%= f.text_field :telephone_number, class: "telephone_number" %>
+    </div></br>
+    <div class="field">
+      <%= f.label :メールアドレス %>
+      <%= f.email_field :email, class: "email" %>
+    </div></br>
+    <div class="actions">
+      <%= f.submit "編集内容を保存" ,class: 'btn btn-sm btn-success' %>
+    </div>
+  <% end %>
+</div>

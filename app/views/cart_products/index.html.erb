@@ -1,6 +1,6 @@
 <div class="container">
   <h3>ショッピングカート</h3>
-  <table class="table table-hover table-inverse">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>商品名</th>
@@ -12,14 +12,33 @@
     </thead>
     <tbody>
       <% @cart_products.each do |cart_product| %>
+      <% @tax_included_price = (cart_product.product.price * 1.1).floor %>
+      <% @subtotal_price = (@tax_included_price * cart_product.amount).floor %>
       <tr>
         <th><%= cart_product.product.name %></th>
-        <th><%= cart_product.product.price * 1.1  %></th>
-        <th><%= cart_product.amount %></th>
-        <th><%= (cart_product.product.price * 1.1) * cart_product.amount %></th>
+        <th><%= @tax_included_price %></th>
+        <th>
+          <%= form_with model: cart_product do |f| %>
+           <%= f.select :amount, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>
+           <%= f.submit '変更' %>
+          <% end %>
+        </th>
+        <th><%= @subtotal_price %></th>
         <th><%= link_to "削除する", cart_product_path(cart_product.id), method: :delete %></th>
       </tr>
+      
+      <% @total_price += @subtotal_price %>
       <% end %>
     </tbody>
   </table>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>合計金額</td>
+        <td><%= @total_price %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to "買い物を続ける", products_path %>
 </div>

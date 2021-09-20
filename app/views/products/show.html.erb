@@ -7,6 +7,6 @@
      <%= f.select :amount, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>
      <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
      <%= f.hidden_field :product_id, :value => @product.id %>
-     <%= f.submit '送信' %>
+     <%= f.submit 'カートに入れる' %>
    <% end %>
 </div>
