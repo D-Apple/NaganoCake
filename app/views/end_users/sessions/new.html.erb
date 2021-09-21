@@ -2,6 +2,7 @@
   <h2>ログイン</h2>
   <p>会員の方はこちらからログイン</p>
 
+  <%= flash[:error] %>
   <%= form_with model: @end_user, url: end_user_session_path, local: true do |f| %>
     <div class="field">
       <%= f.label :メールアドレス %>

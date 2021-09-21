@@ -1,5 +1,6 @@
 class EndUsersController < ApplicationController
 
+   before_action :authenticate_end_user!
 
   def show
     @end_user = current_end_user
@@ -12,7 +13,15 @@ class EndUsersController < ApplicationController
   def update
     @end_user = EndUser.find(params[:id])
     @end_user.update(end_user_params)
-    redirect_to end_user_path(current_end_user.id)
+    redirect_to mypage_path(current_end_user.id)
+  end
+
+  def withdrawal
+    @end_user = current_end_user
+    @end_user.is_withdrawal = false
+    @end_user.save
+    reset_session
+    redirect_to root_path
   end
 
   def verification

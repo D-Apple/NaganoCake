@@ -29,9 +29,19 @@ Rails.application.routes.draw do
   get 'confirm' => 'orders#confirm'
   get 'thanks' => 'orders#thanks'
 
-  resources :end_users, only: [:show, :update, :edit]
+  resources :end_users, only: [:update,]
+  get 'mypage' => 'end_users#show'
+  get 'mypage/edit' => 'end_users#edit'
   get 'verification' => 'end_users#verification'
-  
+  patch 'withdrawal' =>  'end_users#withdrawal'
+
   resources :cart_products, only: [:index, :create, :update, :destroy]
+
+  resources :addresses, only: [:index, :create, :destroy, :edit, :update]
+
+  namespace :admins do
+    resources :products, only:[:new, :create, :index, :show, :edit, :update]
+    resources :genres, only:[:index, :create, :edit, :update]
+ end
 
 end
