@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :genres, only:[:index, :create, :edit, :update]
   resources :end_users, only:[:index, :show, :edit, :update]
   resources :orders, only:[:index, :show, :update]
+  resources :order_details, only:[:update]
  end
 
   resources :products, only: [:index, :show]
