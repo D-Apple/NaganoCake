@@ -6,15 +6,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     products_path(resource)
   end
+
+  #is_withdrawalがfalseならトップページにリダイレクト
   
-  def current_cart
-    if session[:cart_id]
-      @cart = Cart.find(session[:cart_id])
-    else
-      @cart = Cart.create
-      session[:cart_id] = @cart.id
-    end
-  end
 
   protected
 

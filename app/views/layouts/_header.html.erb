@@ -12,7 +12,7 @@
               <ul class="navbar-nav ml-auto">
                 <% if end_user_signed_in? %>
                   <li>
-                    <%= link_to "マイページ", end_user_path(current_end_user.id), class: 'nav-link text-dark' %>
+                    <%= link_to "マイページ", mypage_path, class: 'nav-link text-dark' %>
                   </li>
 
                   <li>
@@ -30,19 +30,19 @@
                   <li>
                     <%= link_to "商品一覧", admins_products_path, class: 'nav-link text-dark' %>
                   </li>
-                  
+
                   <li>
                     <%= link_to "会員一覧", admins_end_users_path, class: 'nav-link text-dark' %>
                   </li>
-                  
+
                   <li>
                     <%= link_to "注文履歴一覧", admins_orders_path, class: 'nav-link text-dark' %>
                   </li>
-                  
+
                   <li>
                     <%= link_to "ジャンル一覧", admins_genres_path, class: 'nav-link text-dark' %>
                   </li>
-                  
+
                   <li>
                     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
                   </li>
