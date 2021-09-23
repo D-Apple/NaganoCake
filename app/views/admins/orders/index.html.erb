@@ -10,12 +10,17 @@
           </tr>
         <tbody>
           <% @orders.each do |order| %>
-          <tr>
-            <th><%= link_to order.create_at, admins_order(order.id) %></th>
-            <th><%= order.end_user.name %></th>
-            <th><%= order.count %></th>
-            <th><%= order.status %></th>
-          </tr>
+          <% @order_details = OrderDetail.where(order_id: order.id) %>
+          <% @total_amount = 0 %>
+            <% @order_details.each do |order_detail| %>
+              <% @total_amount += order_detail.amount %>
+            <% end %>
+              <tr>
+                <th><%= link_to order.created_at, admins_order_path(order.id) %></th>
+                <th><%= order.end_user.last_name %><%= order.end_user.first_name %></th>
+                <th><%= @total_amount %></th>
+                <th><%= order.status %></th>
+              </tr>
           <% end %>
         </tbody>
         </thead>
