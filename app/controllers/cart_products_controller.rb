@@ -21,6 +21,12 @@ class CartProductsController < ApplicationController
     cart_product.destroy
     redirect_to request.referer
   end
+  
+  def destroy_all
+    CartProduct.where(end_user_id: current_end_user.id).destroy_all
+    redirect_to request.referer
+  end
+  
   private
 
   def cart_product_params

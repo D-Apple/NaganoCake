@@ -1,2 +1,68 @@
-<h1>Orders#confirm</h1>
-<p>Find me in app/views/orders/confirm.html.erb</p>
+<div class="container">
+  <h3>注文情報確認</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_products.each do |cart_product| %>
+      <% @tax_included_price = (cart_product.product.price * 1.1).floor %>
+      <% @subtotal_price = (@tax_included_price * cart_product.amount).floor %>
+      <tr>
+        <td><%= cart_product.product.name %></td>
+        <td><%= @tax_included_price %></td>
+        <td><%= cart_product.amount %></td>
+        <td><%= @subtotal_price %></td>
+      </tr>
+      <% @total_price += @subtotal_price %>
+      <% end %>
+    </tbody>
+  </table>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>送料</td>
+        <td><%= @order.delivery_price %></td>
+      </tr>
+      <tr>
+        <td>商品合計</td>
+        <td><%=@total_price %></td>
+      </tr>
+      <tr>
+        <td>請求金額</td>
+        <% @billing_amount = @total_price + @order.delivery_price %>
+        <td><%= @billing_amount %></td>
+      </tr>
+    </tbody>
+  </table>
+
+    <h5>支払い方法</h3>
+    <%= @order.payment_method %></br>
+    <h5>お届け先</h3>
+    〒<%= @order.shipping_postal_code %>
+    <%= @order.shipping_address %></br>
+    <%= @order.shipping_name %>
+
+    <%= form_with model: @new_order, url: orders_path, local: true do |f| %>
+      <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code.to_s %>
+      <%= f.hidden_field :shipping_address, value: @order.shipping_address %>
+      <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+      <%= f.hidden_field :end_user_id, value: @end_user.id %>
+      <%= f.hidden_field :total_price, value: @billing_amount %>
+      <% @cart_products.each do |cart_product| %>
+        <%= f.fields_for :order_details do |m| %>
+          <%= m.hidden_field :selling_price, value: cart_product.product.price %>
+          <%= m.hidden_field :amount, value: cart_product.amount %>
+          <%= m.hidden_field :product_id, value: cart_product.product_id %>
+        <% end %>
+      <% end %>
+      <%= f.submit "注文を確定する" %>
+    <% end %>
+</div>
+
