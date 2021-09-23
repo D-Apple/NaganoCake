@@ -11,7 +11,7 @@
         <tbody>
           <% @orders.each do |order| %>
           <tr>
-            <th><%= order.create_at %></th>
+            <th><%= link_to order.create_at, admins_order(order.id) %></th>
             <th><%= order.end_user.name %></th>
             <th><%= order.count %></th>
             <th><%= order.status %></th>
