@@ -39,9 +39,5 @@ Rails.application.routes.draw do
 
   resources :addresses, only: [:index, :create, :destroy, :edit, :update]
 
-  namespace :admins do
-    resources :products, only:[:new, :create, :index, :show, :edit, :update]
-    resources :genres, only:[:index, :create, :edit, :update]
- end
 
 end

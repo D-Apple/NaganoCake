@@ -2,45 +2,64 @@
   <h2 class="mb-5">新規会員登録</h2>
 
   <%= form_with model: @end_user, url: end_user_registration_path, id: 'new_end_user', class: 'new_end_user', local: true do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="field">
-      <%= f.label :名前 %>
-      (姓)<%= f.text_field :last_name, autofocus: true, class: "last_name" %>
-      (名)<%= f.text_field :first_name, class: "first_name" %>
-    </div></br>
-    <div class="field">
-      <%= f.label :フリガナ %>
-      (セイ)<%= f.text_field :last_name_furigana, class: "last_name_furigana" %>
-      (メイ)<%= f.text_field :first_name_furigana, class: "first_name_furigana" %>
-    </div></br>
-    <div class="field">
-      <%= f.label :メールアドレス %>
-      <%= f.email_field :email, class: "email" %>
-    </div></br>
-    <div class="field">
-      <%= f.label :郵便番号（ハイフン） %>
-      <%= f.text_field :postal_code, class: "postal_code" %>
-    </div></br>
-    <div class="field">
-      <%= f.label :住所 %>
-      <%= f.text_field :address, class: "address" %>
-    </div></br>
-    <div class="field">
-      <%= f.label :電話番号（ハイフンなし） %>
-      <%= f.text_field :telephone_number, class: "telephone_number" %>
-    </div></br>
-    <div class="field">
-      <%= f.label :パスワード（6文字以上） %>
-      <%= f.password_field :password, autocomplete: "off", class: "password" %>
-    </div></br>
-    <div class="field">
-      <%= f.label :パスワード（確認用）%><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div></br>
-    <div class="actions">
-      <%= f.submit "新規登録" ,class: 'btn btn-sm btn-success' %>
-    </div>
-
+    <table>
+      <div class="field">
+      <%= render "devise/shared/error_messages", resource: resource %>
+        <tr>
+          <th><%= f.label :名前 %></th>
+          <th>(姓)　<%= f.text_field :last_name, autofocus: true, class: "last_name form-control", placeholder: "令和" %></th>
+          <th>(名)　<%= f.text_field :first_name, class: "first_name form-control", placeholder: "太郎" %></th>
+        </tr>
+      </div>
+      <div class="field">
+        <tr>
+          <th><%= f.label :フリガナ %></th>
+          <th>(セイ)<%= f.text_field :last_name_furigana, class: "last_name_furigana form-control", placeholder: "レイワ" %></th>
+          <th>(メイ)<%= f.text_field :first_name_furigana, class: "first_name_furigana form-control", placeholder: "タロウ" %></th>
+        </tr>
+      </div>
+      <div class="field">
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <th><%= f.email_field :email, class: "email form-control", placeholder: "sample@example.com" %></th>
+        </tr>
+      </div>
+      <div class="field">
+        <tr>
+          <th><%= f.label :郵便番号（ハイフンなし） %></th>
+          <th><%= f.text_field :postal_code, class: "postal_code form-control", placeholder: "0000000" %></th>
+        </tr>
+      </div>
+      <div class="field">
+        <tr>
+          <th><%= f.label :住所 %></th>
+          <th colspan="2"><%= f.text_field :address, class: "address form-control", placeholder: "東京都新宿区歌舞伎町0-0" %></th>
+        </tr>
+      </div>
+      <div class="field">
+        <tr>
+          <th><%= f.label :電話番号（ハイフンなし） %></th>
+          <th><%= f.text_field :telephone_number, class: "telephone_number form-control", placeholder: "00000000000" %></th>
+        </tr>
+      </div>
+      <div class="field">
+        <tr>
+          <th><%= f.label :パスワード（6文字以上） %></th>
+          <th><%= f.password_field :password, autocomplete: "off", class: "password form-control" %></th>
+        </tr>
+      </div>
+      <div class="field">
+        <tr>
+          <th><%= f.label :パスワード（確認用）%></th>
+          <th><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></th>
+        </tr>
+      </div>
+      <div class="actions">
+        <tr>
+          <th></th><th><%= f.submit "新規登録" ,class: 'btn btn-sm btn-success form-control' %></th>
+        </tr>
+      </div>
+    </table>
   <% end %>
 
   <p>すでに会員登録がお済みの方は</br>
