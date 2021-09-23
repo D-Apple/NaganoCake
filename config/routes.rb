@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords',
     registrations: 'admins/registrations'
   }
-  delete '/logout', to: 'end_users/sessions#destroy', as: :logout
+
   devise_for :end_users, controllers: {
     sessions: 'end_users/sessions',
     passwords: 'end_users/passwords',
@@ -18,8 +18,8 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
 
-  resources :orders, only: [:index, :show, :new]
-  get 'confirm' => 'orders#confirm'
+  resources :orders, only: [:index, :create, :show, :new]
+  post 'confirm' => 'orders#confirm'
   get 'thanks' => 'orders#thanks'
 
   resources :end_users, only: [:update,]
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   patch 'withdrawal' =>  'end_users#withdrawal'
 
   resources :cart_products, only: [:index, :create, :update, :destroy]
+  delete 'destroy_all' => 'cart_products#destroy_all'
 
   resources :addresses, only: [:index, :create, :destroy, :edit, :update]
 
