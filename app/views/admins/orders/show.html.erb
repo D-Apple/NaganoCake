@@ -3,11 +3,11 @@
   <table>
     <tr>
       <th>購入者</th>
-      <th><%= @order.user.name %></th>
+      <th><%= @order.end_user.last_name %><%= @order.end_user.first_name %></th>
     </tr>
     <tr>
       <th>注文日</th>
-      <th><%= @order.create_at %></th>
+      <th><%= @order.created_at %></th>
     </tr>
     <tr>
       <th>配送先</th>
@@ -21,34 +21,36 @@
     </tr>
     <tr>
       <th>注文ステータス</th>
-      <th><%= f.select :status, [["入金待ち", 0],["入金確認", 1],["製作中", 2],["発送準備中", 3],["発送済み", 4]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
+      <th><%= f.select :status, [["入金待ち"],["入金確認"],["製作中"],["発送準備中"],["発送済み"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
     </tr>
   </table>
 <% end %>
 
-<%= form_with model: @order.order_detail, url: admins_order_detail_path(@order.order_detail), local: true do |f| %>
+
   <table class="table">
     <thead class="thead-light">
       <tr>
         <th>商品名</th>
         <th>単価（税込）</th>
         <th>数量</th>
-        <th>数量</th>
         <th>小計</th>
         <th>制作ステータス</th>
       </tr>
-      <% @subtotal = @order.order_detail.selling_price * @order.order_detail.amount %>
+      
       <% @product_total = 0 %>
       <% @total_price = 0 %>
-      <% @order.order_detail.each do |order_detail| %>
+      <% @order_details.each do |order_detail| %>
+      <%= form_with model: order_detail, url: admins_order_detail_path(order_detail.id), local: true do |f| %>
+      <% @subtotal = order_detail.selling_price * order_detail.amount %>
       <tr>
         <th><%= order_detail.product.name %></th>
-        <th><%= order_detail.selling_price %></th>
+        <th><%= (order_detail.selling_price * 1.1).floor%></th>
         <th><%= order_detail.amount %></th>
-        <th><%= order_detail.selling_price %> * <%= order_detail.amount %></th>
-        <th><%= f.select :production_status, [["制作待ち", 0],["製作中", 1],["制作完了", 2],["着手不可", 3]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
+        <th><%= (@subtotal * 1.1).floor%></th>
+        <th><%= f.select :production_status, [["制作待ち"],["製作中"],["制作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
       </tr>
       <% @product_total += @subtotal %>
+      <% end %>
       <% end %>
     </thead>
   </table>
@@ -56,7 +58,7 @@
   <table>
     <tr>
       <th>商品合計</th>
-      <th><%= @product_total %></th>
+      <th><%= (@product_total * 1.1).floor %></th>
     </tr>
     <tr>
       <th>送料</th>
@@ -64,6 +66,6 @@
     </tr>
     <tr>
       <th>請求金額合計</th>
-      <th><%= @product_total + @order.delivery_price %></th>
+      <th><%= (@product_total * 1.1).floor + @order.delivery_price %></th>
     </tr>
   </table>
