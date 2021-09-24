@@ -16,5 +16,50 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ 
+body {
+ background-image: url(background.jpg);
+ background-position: center;
+ background-size: cover;
+ display: flex;
+ flex-flow: column;
+ min-height: 100vh;
+}
 
+header {
+ background-image: url(header.jpg);
+}
 
+main {
+ flex: 1;
+}
+
+select, option{
+  width:30%;
+  height: 40px;
+  box-sizing:border-box;
+  font-size:1em;
+  border:skyblue 3px solid;
+  border-radius:0;
+  background:#fff;
+}
+
+.btn--orange {
+ color: #FFF;
+ background-color: #FFA500;
+ margin: 5px;
+ width: 100px;
+}
+
+.btn--radius {
+ border-radius: 10vh;
+}
+
+th, td {
+ padding: 10px 15px;
+}
+
+footer {
+ background-image: url(header.jpg);
+ height: 70px;
+}

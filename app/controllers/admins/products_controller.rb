@@ -1,5 +1,5 @@
 class Admins::ProductsController < ApplicationController
-  
+  before_action :authenticate_admin!
   def new
     @product = Product.new
     @genres = Genre.all
@@ -21,6 +21,7 @@ class Admins::ProductsController < ApplicationController
   
   def edit
     @product = Product.find(params[:id])
+    @genres = Genre.all
   end
   
   def update
