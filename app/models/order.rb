@@ -6,4 +6,6 @@ class Order < ApplicationRecord
   enum payment_method: { クレジットカード: 0, 銀行振込: 1}
   
   accepts_nested_attributes_for :order_details
+  
+  
 end

@@ -50,7 +50,7 @@
 
     <%= form_with model: @new_order, url: orders_path, local: true do |f| %>
       <%= f.hidden_field :payment_method, value: @order.payment_method %>
-      <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code.to_s %>
+      <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code.t %>
       <%= f.hidden_field :shipping_address, value: @order.shipping_address %>
       <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
       <%= f.hidden_field :end_user_id, value: @end_user.id %>
