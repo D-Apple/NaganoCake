@@ -1,9 +1,9 @@
 <div class="container">
   <h5>注文履歴詳細</h5>
   <div class="row">
-    <div class="col-sm">
+    <div class="col-sm-6">
       <p>注文情報</p>
-      <table class="table table-bordered">
+      <table class="table table-bordered bg-white">
         <tbody>
           <tr>
             <td>注文日</td>
@@ -28,9 +28,9 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm">
+    <div class="col-sm-4">
       <p>請求情報</p>
-      <table class="table table-bordered">
+      <table class="table table-bordered bg-white">
         <tbody>
           <tr>
             <td>商品合計</td>
@@ -48,28 +48,30 @@
       </table>
     </div>
   </div>
+  <p>注文内容</p>
   <div class="row">
-    <p>注文内容</p>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>商品</th>
-          <th>単価（税込み）</th>
-          <th>個数</th>
-          <th>小計</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @order_details.each do |order_detail| %>
-        <% @tax_included_price = (order_detail.selling_price * 1.1).floor %>
-        <tr>
-          <td><%= order_detail.product.name %></td>
-          <td><%= @tax_included_price %></td>
-          <td><%= order_detail.amount %></td>
-          <td><%= @tax_included_price * order_detail.amount %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="col-sm-8">
+      <table class="table table-bordered bg-white">
+        <thead>
+          <tr>
+            <th style="width: 50%">商品</th>
+            <th>単価（税込み）</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |order_detail| %>
+          <% @tax_included_price = (order_detail.selling_price * 1.1).floor %>
+          <tr>
+            <td><%= order_detail.product.name %></td>
+            <td><%= @tax_included_price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= @tax_included_price * order_detail.amount %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
