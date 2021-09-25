@@ -6,7 +6,7 @@ class Product < ApplicationRecord
 
   attachment :image
   
-  def add_tax_price
+  def add_tax_sales_price
     (self.price * 1.1).round
   end
 end

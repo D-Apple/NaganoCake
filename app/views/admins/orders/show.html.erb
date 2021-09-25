@@ -7,7 +7,7 @@
     </tr>
     <tr>
       <th>注文日</th>
-      <th><%= @order.created_at %></th>
+      <th><%= @order.created_at.strftime('%Y/%m/%d') %></th>
     </tr>
     <tr>
       <th>配送先</th>
@@ -36,7 +36,7 @@
         <th>小計</th>
         <th>制作ステータス</th>
       </tr>
-      
+
       <% @product_total = 0 %>
       <% @total_price = 0 %>
       <% @order_details.each do |order_detail| %>
@@ -44,9 +44,9 @@
       <% @subtotal = order_detail.selling_price * order_detail.amount %>
       <tr>
         <th><%= order_detail.product.name %></th>
-        <th><%= (order_detail.selling_price * 1.1).floor%></th>
+        <th><%= (order_detail.selling_price).floor%></th>
         <th><%= order_detail.amount %></th>
-        <th><%= (@subtotal * 1.1).floor%></th>
+        <th><%= (@subtotal).floor%></th>
         <th><%= f.select :production_status, [["制作待ち"],["製作中"],["制作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
       </tr>
       <% @product_total += @subtotal %>
@@ -54,11 +54,11 @@
       <% end %>
     </thead>
   </table>
-  
+
   <table>
     <tr>
       <th>商品合計</th>
-      <th><%= (@product_total * 1.1).floor %></th>
+      <th><%= (@product_total).floor %></th>
     </tr>
     <tr>
       <th>送料</th>
@@ -66,6 +66,6 @@
     </tr>
     <tr>
       <th>請求金額合計</th>
-      <th><%= (@product_total * 1.1).floor + @order.delivery_price %></th>
+      <th><%= (@product_total).floor + @order.delivery_price %></th>
     </tr>
   </table>

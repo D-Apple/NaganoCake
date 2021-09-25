@@ -6,12 +6,14 @@
       <div class="col-lg-6 mx-auto">
          <h2><%= @product.name %></h2><br>
          <h3><%= @product.introduction %></h3><br><br>
-         <h3>¥<%= (@product.price * 1.1).floor%> (税込)</h3> 
-         <%= form_with model: @cart_product, url: cart_products_path do |f| %>
-           <%= f.select :amount, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>
-           <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
-           <%= f.hidden_field :product_id, :value => @product.id %>
-           <%= f.submit 'カートに入れる', class:"btn btn-success" %>
+         <h3>¥<%= @product.add_tax_sales_price %> (税込)</h3>
+         <% if end_user_signed_in? %>
+            <%= form_with model: @cart_product, url: cart_products_path do |f| %>
+               <%= f.select :amount, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>
+               <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
+               <%= f.hidden_field :product_id, :value => @product.id %>
+               <%= f.submit 'カートに入れる', class:"btn btn-success" %>
+            <% end %>
          <% end %>
       </div>
    </div>

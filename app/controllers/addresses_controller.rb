@@ -8,9 +8,9 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(address_params)
-    @address.end_user_id = current_end_user.id
-    @address.save
+    address = Address.new(address_params)
+    address.end_user_id = current_end_user.id
+    address.save
     redirect_to request.referer
   end
 
