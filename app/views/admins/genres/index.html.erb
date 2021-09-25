@@ -6,7 +6,7 @@
         <%= f.submit '新規登録', class: "btn btn-success" %>
       <% end %>
       
-      <table class="table">
+      <table class="table bg-white">
         <tr>
           <th>ジャンル</th>
         </tr>
@@ -17,4 +17,5 @@
         </tr>
         <% end %>
       </table>
+    <div class="d-flex align-items-center justify-content-center"><%= paginate @genres %></div>
 </div>
