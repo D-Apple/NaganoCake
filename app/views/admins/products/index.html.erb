@@ -1,7 +1,7 @@
 <div class="container">    
       <h2>商品一覧</h2>
       <%= link_to "商品追加", new_admins_product_path %>
-        <table class="table">
+        <table class="table bg-white">
           <thead class="thead-light">
             <tr>
               <th>商品ID</th>
@@ -27,4 +27,5 @@
             </tr>
             <% end %>
         </table>
+    <div class="d-flex align-items-center justify-content-center"><%= paginate @products %></div>
 </div>

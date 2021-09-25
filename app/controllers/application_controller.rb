@@ -4,11 +4,18 @@ class ApplicationController < ActionController::Base
 
  #ログイン後のリダイレクト先を商品一覧ページに
   def after_sign_in_path_for(resource)
-    case resource
-    when Admin
-      admins_products_path
-    when EndUser  
-      products_path(resource)
+    if resource.is_a?(Admin)
+      admins_orders_path
+    else
+      root_path
+    end
+  end
+  
+  def after_sign_out_path_for(resource)
+    if resource == :admin
+      new_admin_session_path
+    else
+      root_path
     end
   end
   
