@@ -1,5 +1,8 @@
 <div class="container">
-  <h2 class="pt-4 h1">商品一覧</h3><p>全<%= @products.count %>件</p>
+  <div class="row">
+      <div class="pt-4 h1">商品一覧</div>
+      <div class="pl-3 pt-5 h5">全<%= @products_count %>件</div>
+  </div>
 </div>
 <div class="container">
   <div class="row mx-auto row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
@@ -13,5 +16,6 @@
     </div>
     <% end %>
   </div>
+  <div class="d-flex align-items-center justify-content-center"><%= paginate @products %></div>
 </div>
 
