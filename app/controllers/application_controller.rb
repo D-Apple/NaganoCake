@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-  
+
   def after_sign_out_path_for(resource)
     if resource == :admin
       new_admin_session_path
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-  
+
   protected
 
   def configure_permitted_parameters
