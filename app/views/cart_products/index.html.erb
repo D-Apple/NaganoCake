@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <% @cart_products.each do |cart_product| %>
-      <% @tax_included_price = (cart_product.product.price * 1.1).floor %>
+      <% @tax_included_price = (cart_product.product.add_tax_sales_price).floor %>
       <% @subtotal_price = (@tax_included_price * cart_product.amount).floor %>
       <tr>
         <th><%= cart_product.product.name %></th>

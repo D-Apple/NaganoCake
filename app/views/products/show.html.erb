@@ -6,7 +6,8 @@
       <div class="col-lg-6">
          <h2><%= @product.name %></h2><br>
          <h3><%= @product.introduction %></h3><br><br>
-         <h3>¥<%= (@product.price * 1.1).floor%> (税込)</h3> 
+
+         <h3>¥<%= @product.price.add_tax_sales_price %> (税込)</h3> 
          <%= form_with model: @cart_product, url: cart_products_path do |f| %>
             <div class="pt-2 pb-2">
            <%= f.select :amount, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
 
+before_action :authenticate_end_user!
 
   def index
     @user = current_end_user
@@ -12,7 +13,7 @@ class OrdersController < ApplicationController
     @selling_price = 0
     @order_details.each do |order_detail|
       subtotal_price = order_detail.amount * order_detail.selling_price
-      @selling_price += (subtotal_price * 1.1).floor
+      @selling_price += (subtotal_price).floor
     end
   end
 

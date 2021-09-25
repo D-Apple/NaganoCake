@@ -13,7 +13,7 @@
         </thead>
         <tbody>
           <% @cart_products.each do |cart_product| %>
-          <% @tax_included_price = (cart_product.product.price * 1.1).floor %>
+          <% @tax_included_price = cart_product.product.add_tax_sales_price %>
           <% @subtotal_price = (@tax_included_price * cart_product.amount).floor %>
           <tr>
             <td><%= cart_product.product.name %></td>
@@ -60,14 +60,14 @@
 
     <%= form_with model: @new_order, url: orders_path, local: true do |f| %>
       <%= f.hidden_field :payment_method, value: @order.payment_method %>
-      <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code.to_s %>
+      <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code %>
       <%= f.hidden_field :shipping_address, value: @order.shipping_address %>
       <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
       <%= f.hidden_field :end_user_id, value: @end_user.id %>
       <%= f.hidden_field :total_price, value: @billing_amount %>
       <% @cart_products.each do |cart_product| %>
         <%= f.fields_for :order_details do |m| %>
-          <%= m.hidden_field :selling_price, value: cart_product.product.price %>
+          <%= m.hidden_field :selling_price, value: cart_product.product.add_tax_sales_price %>
           <%= m.hidden_field :amount, value: cart_product.amount %>
           <%= m.hidden_field :product_id, value: cart_product.product_id %>
         <% end %>

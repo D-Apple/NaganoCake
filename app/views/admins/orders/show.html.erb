@@ -1,77 +1,71 @@
-<div class="container"> 
-  <h2>注文履歴詳細</h2>
-  <%= form_with model: @order, url: admins_order_path(@order.id), local: true do |f| %>
-    <table>
+<h2>注文履歴詳細</h2>
+<%= form_with model: @order, url: admins_order_path(@order.id), local: true do |f| %>
+  <table>
+    <tr>
+      <th>購入者</th>
+      <th><%= @order.end_user.last_name %><%= @order.end_user.first_name %></th>
+    </tr>
+    <tr>
+      <th>注文日</th>
+      <th><%= @order.created_at.strftime('%Y/%m/%d') %></th>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <th>
+        <%= @order.shipping_postal_code %> <%= @order.shipping_address %><br>
+        <%= @order.shipping_name %>
+      </th>
+    </tr>
+    <tr>
+      <th><%= @order.payment_method %></th>
+    </tr>
+    <tr>
+      <th>注文ステータス</th>
+      <th><%= f.select :status, [["入金待ち"],["入金確認"],["製作中"],["発送準備中"],["発送済み"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
+    </tr>
+  </table>
+<% end %>
+
+
+  <table class="table">
+    <thead class="thead-light">
       <tr>
-        <th>購入者</th>
-        <th><%= @order.end_user.last_name %><%= @order.end_user.first_name %></th>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
       </tr>
+
+      <% @product_total = 0 %>
+      <% @total_price = 0 %>
+      <% @order_details.each do |order_detail| %>
+      <%= form_with model: order_detail, url: admins_order_detail_path(order_detail.id), local: true do |f| %>
+      <% @subtotal = order_detail.selling_price * order_detail.amount %>
       <tr>
-        <th>注文日</th>
-        <th><%= @order.created_at %></th>
+        <th><%= order_detail.product.name %></th>
+        <th><%= (order_detail.selling_price).floor%></th>
+        <th><%= order_detail.amount %></th>
+        <th><%= (@subtotal).floor%></th>
+        <th><%= f.select :production_status, [["制作待ち"],["製作中"],["制作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
       </tr>
-      <tr>
-        <th>配送先</th>
-        <th>
-          <%= @order.shipping_postal_code %> <%= @order.shipping_address %><br>
-          <%= @order.shipping_name %>
-        </th>
-      </tr>
-      <tr>
-        <th><%= @order.payment_method %></th>
-      </tr>
-      <tr>
-        <th>注文ステータス</th>
-        <th><%= f.select :status, [["入金待ち"],["入金確認"],["製作中"],["発送準備中"],["発送済み"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
-      </tr>
-    </table>
-  <% end %>
-  
-  <div class="row">
-    <div class="col-lg-7">
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th>制作ステータス</th>
-          </tr>
-          
-          <% @product_total = 0 %>
-          <% @total_price = 0 %>
-          <% @order_details.each do |order_detail| %>
-          <%= form_with model: order_detail, url: admins_order_detail_path(order_detail.id), local: true do |f| %>
-          <% @subtotal = order_detail.selling_price * order_detail.amount %>
-          <tr>
-            <th><%= order_detail.product.name %></th>
-            <th><%= (order_detail.selling_price * 1.1).floor%></th>
-            <th><%= order_detail.amount %></th>
-            <th><%= (@subtotal * 1.1).floor%></th>
-            <th><%= f.select :production_status, [["制作待ち"],["製作中"],["制作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
-          </tr>
-          <% @product_total += @subtotal %>
-          <% end %>
-          <% end %>
-        </thead>
-      </table>
-    </div>
-     <div class="col-lg-4">
-      <table>
-        <tr>
-          <th>商品合計</th>
-          <th><%= (@product_total * 1.1).floor %></th>
-        </tr>
-        <tr>
-          <th>送料</th>
-          <th><%= @order.delivery_price %>円</th>
-        </tr>
-        <tr>
-          <th>請求金額合計</th>
-          <th><%= (@product_total * 1.1).floor + @order.delivery_price %></th>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div> 
+      <% @product_total += @subtotal %>
+      <% end %>
+      <% end %>
+    </thead>
+  </table>
+
+  <table>
+    <tr>
+      <th>商品合計</th>
+      <th><%= (@product_total).floor %></th>
+    </tr>
+    <tr>
+      <th>送料</th>
+      <th><%= @order.delivery_price %>円</th>
+    </tr>
+    <tr>
+      <th>請求金額合計</th>
+      <th><%= (@product_total).floor + @order.delivery_price %></th>
+    </tr>
+  </table>

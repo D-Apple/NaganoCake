@@ -62,7 +62,7 @@
         </thead>
         <tbody>
           <% @order_details.each do |order_detail| %>
-          <% @tax_included_price = (order_detail.selling_price * 1.1).floor %>
+          <% @tax_included_price = order_detail.selling_price %>
           <tr>
             <td><%= order_detail.product.name %></td>
             <td><%= @tax_included_price %></td>

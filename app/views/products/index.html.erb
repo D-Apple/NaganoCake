@@ -11,7 +11,7 @@
       <div class="px-3 pb-2 pt-2 mx-2 mb-3 bg-light border border-secondary color-white text-center">
         <%= attachment_image_tag product, :image, :fill, 180, 110, format: 'jpeg' %>
         <div><%= link_to product.name, product_path(product.id) %></div>
-        <div>¥<%= product.price %></div>
+        <div>¥<%= product.add_tax_sales_price %></div>
       </div>
     </div>
     <% end %>

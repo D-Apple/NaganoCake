@@ -1,4 +1,4 @@
-<div class="container">     
+<div class="container">
       <h2>注文履歴一覧</h2>
       <table class="table">
         <thead class="thead-light">
@@ -16,7 +16,7 @@
               <% @total_amount += order_detail.amount %>
             <% end %>
               <tr>
-                <th><%= link_to order.created_at, admins_order_path(order.id) %></th>
+                <th><%= link_to order.created_at.strftime('%Y/%m/%d'), admins_order_path(order.id) %></th>
                 <th><%= order.end_user.last_name %><%= order.end_user.first_name %></th>
                 <th><%= @total_amount %></th>
                 <th><%= order.status %></th>

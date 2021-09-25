@@ -11,8 +11,8 @@ class EndUsersController < ApplicationController
   end
 
   def update
-    @end_user = EndUser.find(params[:id])
-    @end_user.update(end_user_params)
+    end_user = EndUser.find(params[:id])
+    end_user.update(end_user_params)
     redirect_to mypage_path(current_end_user.id)
   end
 
