@@ -47,7 +47,7 @@
         <th><%= (order_detail.selling_price).floor%></th>
         <th><%= order_detail.amount %></th>
         <th><%= (@subtotal).floor%></th>
-        <th><%= f.select :production_status, [["制作待ち"],["製作中"],["制作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
+        <th><%= f.select :production_status, [["製作待ち"],["製作中"],["製作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %></th>
       </tr>
       <% @product_total += @subtotal %>
       <% end %>
