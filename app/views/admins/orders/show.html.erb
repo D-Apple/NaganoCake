@@ -49,7 +49,7 @@
           <th><%= (@subtotal).floor%></th>
           <th>
             <%= form_with model: order_detail, url: admins_order_detail_path(order_detail.id), local: true do |f| %>
-            <%= f.select :production_status, [["制作待ち"],["製作中"],["制作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %>
+            <%= f.select :production_status, [["製作待ち"],["製作中"],["製作完了"],["着手不可"]] %>　<%= f.submit "更新", class: "btn btn-success" %>
             <% end %>
           </th>
         </tr>
