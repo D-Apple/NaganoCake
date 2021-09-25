@@ -1,4 +1,20 @@
  <div class="container text-center">
   <h1 class="mt-5">Welcome to ながのCAKE</h1>
   <%= image_tag 'main.jpg', width: '60%', height: '60%', class: 'my-5'%>
+  <h1 class="pb-5">新着商品</h1>
  </div>
+ <div class="container">
+  <div class="row mx-auto row-cols-4">
+  <% @products.each do |product| %>
+  <div class="col">
+   <div class="bg-light border border-secondary color-white text-center pt-2">
+     <%= attachment_image_tag product, :image, :fill, 180, 110, format: 'jpeg' %>
+    <div><%= product.name %></div>
+    <div>¥<%= product.price %></div>
+   </div>
+  </div>
+  <% end %>
+  </div>
+  <div class="text-center h2 mt-3 mb-3"><%= link_to "全ての商品を見る", products_path %></div>
+ </div>
+ 
