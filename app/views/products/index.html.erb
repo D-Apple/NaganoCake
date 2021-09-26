@@ -8,12 +8,12 @@
   <div class="row mx-auto row-cols-lg-4 row-cols-md-3 row-cols-sm-2">
     <% @products.each do |product| %>
     <div class="col">
-      <div class="px-3 pb-2 pt-2 mx-2 mb-3 bg-light border border-secondary color-white text-center">
+      <div class="px-3 pb-2 pt-2 mx-2 mb-3 bg-light color-white text-center shadow p-3 mb-5 bg-white rounded fly">
         <%= link_to product_path(product.id) do %>
-        <%= attachment_image_tag product, :image, :fill, 180, 110, format: 'jpeg' %>
+        <%= attachment_image_tag product, :image, :fill, 180, 110, format: 'jpeg', class: "mb-3" %>
         <% end %>
-        <div><%= link_to product.name, product_path(product.id) %></div>
-        <div>¥<%= product.add_tax_sales_price %></div>
+        <div><%= link_to product.name, product_path(product.id), class: "text-secondary" %></div>
+        <div class="text-secondary">¥<%= product.add_tax_sales_price %></div>
       </div>
     </div>
     <% end %>
