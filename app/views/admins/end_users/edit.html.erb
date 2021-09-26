@@ -1,0 +1,46 @@
+ <div class="container">    
+      <h2><%= @end_user.last_name + @end_user.first_name %>さんの会員情報編集</h2>
+      <%= form_with model: @end_user, url: admins_end_user_path(@end_user.id), local: true do |f| %>
+        <table>
+          <tr>
+            <th>会員ID</th>
+            <th><%= @end_user.id %></th>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <th><%= f.text_field :last_name %>　<%= f.text_field :first_name %></th>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <th><%= f.text_field :last_name_furigana %>　<%= f.text_field :first_name_furigana %></th>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <th><%= f.text_field :postal_code %></th>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <th><%= f.text_field :address %></th>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <th><%= f.text_field :telephone_number %></th>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <th><%= f.text_field :email %></th>
+          </tr>
+          <tr>
+            <th>会員ステータス</th>
+            <th>
+              <%= f.label :is_withdrawal, '有効' %>
+              <%= f.radio_button :is_withdrawal, :true %>
+              <%= f.label :is_withdrawal, '退会' %>
+              <%= f.radio_button :is_withdrawal, :false %></th>
+          </tr>
+          <tr>
+            <th></th><th><%= f.submit "設定を保存", class: "btn btn-success" %></th>
+          </tr>
+        </table>
+      <% end %>
+</div> 

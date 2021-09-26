@@ -1,0 +1,52 @@
+<div class="container">
+  <h3>会員情報編集</h3>
+  <%= form_with model: @end_user, local: true do |f| %>
+  <table>
+    <div class="field">
+      <tr>
+        <th><%= f.label :名前 %></th>
+        <th>(姓)<%= f.text_field :last_name, autofocus: true, class: "last_name form-control" %></th>
+        <th>(名)<%= f.text_field :first_name, class: "first_name form-control" %></th>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= f.label :フリガナ %></th>
+        <th>(セイ)<%= f.text_field :last_name_furigana, class: "last_name_furigana form-control" %></th>
+        <th>(メイ)<%= f.text_field :first_name_furigana, class: "first_name_furigana form-control" %></th>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= f.label :郵便番号（ハイフンなし） %></th>
+        <th><%= f.text_field :postal_code, class: "postal_code form-control" %></th>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= f.label :住所 %></th>
+        <th colspan="2"><%= f.text_field :address, class: "address form-control" %></th>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= f.label :電話番号（ハイフンなし） %></th>
+        <th><%= f.text_field :telephone_number, class: "telephone_number form-control" %></th>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <th><%= f.label :メールアドレス %></th>
+        <th><%= f.email_field :email, class: "email form-control" %></th>
+      </tr>
+    </div>
+    <tr>
+      <div class="actions"><th></th>
+        <th>
+          <%= f.submit "編集内容を保存" ,class: 'btn btn-sm btn-success' %>
+          <%= link_to "退会する", verification_path, class: "btn btn-danger" %>
+        </th>
+    </tr>
+  </table>
+  <% end %>
+</div>

@@ -1,0 +1,123 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+body {
+ background-color: #f4f5e9;
+ display: flex;
+ flex-flow: column;
+ min-height: 100vh;
+}
+
+header {
+ text-decoration: none;
+}
+
+.menu {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.menu:hover {
+ opacity: 0.7;
+}
+
+.menu::after {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #333;
+  transform: scale(0, 1);
+  transform-origin: center top;
+  transition: transform .3s;
+}
+
+.menu:hover::after {
+  transform: scale(1, 1);
+}
+
+main {
+ flex: 1;
+}
+
+.main-image {
+ animation-name: fade;
+ animation-duration: 3s;
+}
+
+@keyframes fade{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+select, option{
+  width:30%;
+  height: 40px;
+  box-sizing:border-box;
+  font-size:1em;
+  border:skyblue 3px solid;
+  border-radius:0;
+  background:#fff;
+}
+
+.btn--orange {
+ color: #FFF;
+ background-color: #FFA500;
+ margin: 5px;
+ width: 100px;
+}
+
+.btn--radius {
+ border-radius: 10vh;
+}
+
+th, td {
+ padding: 10px 15px;
+}
+
+footer {
+
+}
+
+a {
+ text-decoration: none;
+}
+
+.fly {
+    background-color: #3169d1;
+    color: #fff !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    margin: 10px 0 0 0;
+}
+.fly:hover {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+}

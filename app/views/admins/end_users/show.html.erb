@@ -1,0 +1,48 @@
+<div class="container">      
+      <h2><%= @end_user.last_name + @end_user.first_name %>さんの会員詳細</h2>
+      <table>
+        <tr>
+          <th>会員ID</th>
+          <th><%= @end_user.id %></th>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <th><%= @end_user.last_name %>　<%= @end_user.first_name %></th>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <th><%= @end_user.last_name_furigana %>　<%= @end_user.first_name_furigana %></th>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <th><%= @end_user.postal_code %></th>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <th><%= @end_user.address %></th>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <th><%= @end_user.telephone_number %></th>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <th><%= @end_user.email %></th>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <th>
+            <% if @end_user.is_withdrawal %>
+              <font color="lime">有効</font>
+            <% else %>
+              <font color="silver">退会</font>
+            <% end %>
+          </th>
+        </tr>
+        <tr>
+          <th></th>
+          <th><%= link_to "編集する", edit_admins_end_user_path(@end_user.id), class:"btn btn-success" %></th>
+          
+        </tr>
+      </table>
+</div>

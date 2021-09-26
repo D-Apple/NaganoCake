@@ -1,0 +1,70 @@
+ <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+          <%=link_to root_path, class: 'navbar-brand' do %>
+            <span><%= image_tag 'naganocake-logo.png', width: '120%', height: '120%', class: ''%></span>
+          <% end %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto mt-3">
+                <% if end_user_signed_in? %>
+                  <li>
+                    <%= link_to "マイページ", mypage_path, class: 'btn--radius btn nav-link menu mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "商品一覧", products_path, class: 'nav-link btn btn--radius menu  mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "カート", cart_products_path, class: 'nav-link btn btn--radius menu  mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link btn btn--radius menu  mr-3 text-secondary' %>
+                 </li>
+                <% elsif admin_signed_in? %>
+                  <li>
+                    <%= link_to "商品一覧", admins_products_path, class: 'btn btn--radius nav-link menu  mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "会員一覧", admins_end_users_path, class: 'btn btn--radius nav-link menu  mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "注文履歴一覧", admins_orders_path, class: 'btn btn--radius nav-link menu  mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "ジャンル一覧", admins_genres_path, class: 'btn btn--radius nav-link menu  mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn nav-link menu mr-3 text-secondary' %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to "Home", root_path, class: 'btn btn--radius nav-link menu mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "About", about_path, class: 'btn btn--radius nav-link menu mr-3 text-secondary' %>
+                  </li>
+
+                  <li>
+                    <%= link_to "新規登録", new_end_user_registration_path, class: 'btn btn--radius nav-link menu mr-3 text-secondary'  %>
+                  </li>
+
+                  <li>
+                    <%= link_to "ログイン",  new_end_user_session_path, class: 'btn btn--radius nav-link menu mr-3 text-secondary' %>
+                  </li>
+                <% end %>
+              </ul>
+          </div>
+        </div>
+      </nav>
+    </header>

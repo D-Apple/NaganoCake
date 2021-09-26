@@ -1,0 +1,25 @@
+<div class="text-center">
+  <%= image_tag 'main-image.jpg', width: '100%', height: '100%', class: 'main-image'%>
+</div>
+
+
+ <div class="container text-center">
+  <%= image_tag 'new-arrival.png', width: '20%', height: '20%', class: ''%>
+ </div>
+ <div class="container">
+  <div class="row mx-auto row-cols-4">
+  <% @products.each do |product| %>
+  <div class="col">
+   <div class="bg-light color-white text-center pt-2 fly shadow p-3 mb-5">
+     <%= link_to product_path(product.id) do %>
+     <%= attachment_image_tag product, :image, :fill, 180, 110, format: 'jpeg' %>
+     <% end %>
+    <div class="text-secondary"><%= product.name %></div>
+    <div class="text-secondary">¥<%= product.price %></div>
+   </div>
+  </div>
+  <% end %>
+  </div>
+  <div class="text-center p mt-3 mb-3"><%= link_to "全ての商品を見る", products_path, class: "text-secondary" %></div>
+ </div>
+
